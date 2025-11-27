@@ -1,0 +1,174 @@
+/* =========================================
+   1. CẤU HÌNH CHUNG (CORE STYLES)
+   ========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    overflow-x: hidden;
+    font-size: 14px; /* Giảm cỡ chữ mặc định xuống */
+}
+
+#intro-section {
+    position: relative;
+    /* Dùng 100vh để ép chiều cao đúng bằng 1 màn hình, không cuộn */
+    height: 100vh; 
+    min-height: 650px; /* Đảm bảo không bị lỗi trên màn hình quá thấp */
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;       /* Căn giữa nội dung theo chiều dọc */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    justify-content: center;
+}
+
+/* =========================================
+   2. CARD & CONTENT STYLES (THU NHỎ)
+   ========================================= */
+
+/* Thu nhỏ Container chính để các thẻ xích lại gần nhau hơn */
+.main-content {
+    max-width: 1140px !important; /* Giới hạn chiều rộng */
+    margin: 0 auto;            /* Căn giữa ngang */
+    position: relative;
+    z-index: 10;
+    margin-top: 30vh; /* Đẩy nhẹ lên trên một chút */
+}
+
+/* Logo - Thu nhỏ */
+.img-intro-logo {
+    position: absolute;  /* Tuyệt đối: để ghim chặt vào góc */
+    top: 30px;           /* Cách mép trên 40px */
+    left: 5%;            /* Cách mép trái 5% (dùng % để ipad cũng đẹp) */
+    width: 250px;        /* Kích thước logo */
+    z-index: 20;         /* Số lớn để nổi lên trên mây và các hình khác */
+    height: auto;
+}
+
+/* Card Container */
+.program-card {
+    border: none;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+.program-card:hover {
+    transform: translateY(-5px); /* Giảm độ bay khi hover */
+}
+
+/* Ảnh Card - Quan trọng: Giảm chiều cao */
+.card-img-top img {
+    height: 150px; /* Giảm từ 220px xuống 150px */
+    object-fit: cover;
+}
+
+/* Body Card - Giảm padding */
+.card-body-custom {
+    padding: 1rem !important; /* Bootstrap p-4 là 1.5rem, giảm xuống 1rem */
+}
+
+/* Tiêu đề Card */
+.program-card h4 {
+    font-size: 1.1rem; /* Giảm cỡ chữ tiêu đề */
+    margin-bottom: 0.5rem;
+}
+
+/* Chữ nhỏ trong Card */
+.program-card p.small {
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+/* Màu nền Card */
+.bg-blue { background-color: #004098; }
+.bg-yellow { background-color: #eebc31; }
+.bg-red { background-color: #a60000; }
+.text-white { color: #fff !important; }
+.rounded-leaf { border-bottom-right-radius: 40px; } /* Bo góc nhỏ lại */
+
+/* Slogan phía dưới */
+.slogan-text {
+    font-size: 0.9rem;
+    margin-top: 1.5rem !important; /* Kéo gần lại card hơn */
+    margin-bottom: 0 !important;
+}
+
+/* =========================================
+   3. TRANG TRÍ (THU NHỎ TỈ LỆ)
+   ========================================= */
+
+.decor-obj {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Tinh chỉnh kích thước các vật thể nhỏ lại khoảng 30% */
+
+.obj-sun {
+    top: -30px;
+    right: -30px;
+    width: 150px; /* Nhỏ lại */
+    animation: spin-slow 40s linear infinite;
+}
+
+.obj-cloud {
+    top: 40px;
+    right: 120px;
+    width: 80px; /* Nhỏ lại */
+    opacity: 0.9;
+    animation: float 6s ease-in-out infinite;
+}
+
+.obj-balloon {
+    top: 50px;
+    left: 20px; /* Đẩy vào trong màn hình hơn */
+    width: 100px; /* Nhỏ lại */
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.obj-birds {
+    top: 120px;
+    left: 45%;
+    width: 60px; /* Nhỏ lại */
+    animation: fly 10s ease-in-out infinite;
+}
+
+.obj-dragonfly {
+    top: 20px;
+    left: 250px;
+    width: 40px; /* Nhỏ lại */
+}
+
+/* --- TẦNG ĐẤT --- */
+.ground-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.obj-hill {
+    width: 100%;
+    height: 180px; /* Giảm chiều cao đồi cỏ */
+    object-fit: cover;
+    object-position: top; /* Lấy phần đỉnh đồi */
+}
+
+/* Ẩn bớt hoa/côn trùng nếu màn hình quá bé để đỡ rối, hoặc thu nhỏ lại */
+.obj-flowers { width: 80%; left: 10%; bottom: 0; }
+.obj-bee-left { width: 40px; bottom: 80px; left: 10%; }
+.obj-bee-right { width: 40px; bottom: 100px; right: 10%; }
+.obj-butterfly-green { width: 30px; bottom: 40px; right: 5%; }
+.obj-butterfly-purple { width: 30px; bottom: 60px; left: 70%; }
+.obj-ladybug { width: 25px; bottom: 10px; left: 50%; }
+
+/* Animation giữ nguyên */
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+@keyframes wiggle { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    #intro-section { height: auto; padding: 50px 0; display: block; }
+    .main-content { margin-top: 0; }
+    .obj-balloon, .obj-birds, .obj-dragonfly { display: none; }
+}
